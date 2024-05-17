@@ -8,17 +8,16 @@ import (
 )
 
 func startRepl() {
-    cliCommands := getCliCommands()
     for {
         promptCommand := getPromptCommand("Pokedex >")
-        if value, ok := cliCommands[promptCommand]; ok{
-            err := value.callback()
-            if err != nil || promptCommand == "exit" {
-                break
+        if command, ok := getCliCommands()[promptCommand]; ok{
+            err := command.callback()
+            if err != nil {
+                fmt.Println(err)
             }
             continue
         }
-        fmt.Println("Command Does Not Exist")
+        fmt.Println("Unknown Command")
     }
 }
 

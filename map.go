@@ -7,7 +7,15 @@ import (
 
 
 func commandMap() error {
-    fmt.Println(api.CommandGetLocations("https://pokeapi.co/api/v2/location/"))
+    locations := api.CommandGetLocations(conf.Next)
+    results := locations.Results
+    for _, location := range results {
+        fmt.Println(location.Name)
+    }
+    next := locations.Next
+    previous := locations.Previous
+    conf.Next = next
+    conf.Previous = previous
     return nil
 }
 

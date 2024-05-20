@@ -51,6 +51,18 @@ type cliCommand struct {
 }
 
 
+type Config struct {
+    Next     string
+    Previous string
+}
+
+
+var conf Config = Config{
+    Next: "https://pokeapi.co/api/v2/location/",
+    Previous: "",
+}
+
+
 func getCliCommands() map[string]cliCommand {
     return map[string]cliCommand{
         "help": {

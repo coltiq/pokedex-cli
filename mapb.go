@@ -6,6 +6,6 @@ import (
 
 
 func commandMapB() error {
-
+    return nil
 }
 

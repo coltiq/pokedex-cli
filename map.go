@@ -1,12 +1,13 @@
 package main
 
 import (
-    "pokedex-cli/packages/pokeapi"
+    "fmt"
+    api "github.com/coltiq/pokedex-cli/pokeapi"
 )
 
 
 func commandMap() error {
-    fmt.Println(PokeAPI("get", "https://pokeapi.co/api/v2/location/"))
+    fmt.Println(api.CommandGetLocations("https://pokeapi.co/api/v2/location/"))
     return nil
 }
 

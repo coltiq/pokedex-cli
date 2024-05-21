@@ -3,7 +3,6 @@ package main
 import (
     "errors"
     "fmt"
-    api "github.com/coltiq/pokedex-cli/pokeapi"
 )
 
 

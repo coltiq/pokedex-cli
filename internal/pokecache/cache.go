@@ -6,20 +6,17 @@ import (
 )
 
 type Cache struct {
-    storedVal   map[string]cacheEntry
-    mu          *sync.Mutex
+	storedVal map[string]cacheEntry
+	mu        *sync.Mutex
 }
 
 type cacheEntry struct {
-    createdAt   time.Time
-    val         []byte
+	createdAt time.Time
+	val       []byte
 }
 
 func NewCache(interval time.Duration) Cache {
-    cache := Cache{
-            storedVal: map[string]cacheEntry{},
-    }
-    cache.reapLoop(interval)
-    return cache
+	cache := Cache{}
+	//cache.reapLoop(interval)
+	return cache
 }
-

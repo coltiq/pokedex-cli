@@ -1,10 +1,10 @@
 package main
 
 import (
-    "os"
+	"os"
 )
 
 func commandExit(cfg *config) error {
-    os.Exit(0)
-    return nil
+	os.Exit(0)
+	return nil
 }

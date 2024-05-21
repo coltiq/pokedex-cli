@@ -1,21 +1,20 @@
 package pokeapi
 
 import (
-    "net/http"
-    "time"
+	"net/http"
+	"time"
 )
 
 // Client
 type Client struct {
-    httpClient http.Client
+	httpClient http.Client
 }
 
-
-//NewClient
+// NewClient
 func NewClient(timeout time.Duration) Client {
-    return Client{
-            httpClient: http.Client{
-                    Timeout: timeout,
-        },
-    }
+	return Client{
+		httpClient: http.Client{
+			Timeout: timeout,
+		},
+	}
 }

@@ -8,5 +8,7 @@ github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521211908-0622acf2f56
 github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521211908-0622acf2f560/go.mod h1:5aI9lOQNucYdLKGYIhMary58gLIrDJ2dF7J5Bo7NP0g=
 github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521212835-79b666d4105a h1:GlRJ1o0GN/mvd/kaWwkkYUL0LxR8Uo3Q3CYA2sAMFDg=
 github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521212835-79b666d4105a/go.mod h1:5aI9lOQNucYdLKGYIhMary58gLIrDJ2dF7J5Bo7NP0g=
+github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521213623-50fe8bff42ab h1:QeDE856fx84cbu6jUouXcWYdPm/5WpGiZRtbE2VUzl4=
+github.com/coltiq/pokedex-cli/internal/pokeapi v0.0.0-20240521213623-50fe8bff42ab/go.mod h1:5aI9lOQNucYdLKGYIhMary58gLIrDJ2dF7J5Bo7NP0g=
 github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240521154609-8a3859e782df h1:syP2p3MKw5M22tOjaXxlEZnEofs+QfL5BbeoyMTEFF0=
 github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240521154609-8a3859e782df/go.mod h1:jQVGonA9bnb3GoiI0L8Bv/pkmQ6ivj1sY3WzAnsuJEs=

@@ -9,11 +9,12 @@ import (
 
 func main() {
 	pokeClient := pokeapi.NewClient(5 * time.Second)
+    baseURL := pokeapi.BaseURL
 	//pokeCache := pokecache.NewCache(5 * time.Minute)
 	cfg := &config{
 		pokeapiClient: pokeClient,
 		//pokeCache: pokeCache,
-        nextLocationsURL: &pokeapi.BaseURL,
+        nextLocationsURL: &baseURL,
 	}
 
 	startRepl(cfg)

@@ -7,10 +7,7 @@ import (
 )
 
 func (c *Client) GetLocations(pageURL *string) (RespLocations, error) {
-	url := BaseURL + "/location-area"
-	if pageURL != nil {
-		url = *pageURL
-	}
+	url := *pageURL	
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

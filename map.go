@@ -6,6 +6,7 @@ import (
 )
 
 func commandMapF(cfg *config) error {
+    fmt.Printf("%v", cfg.nextLocationsURL)
     if cfg.nextLocationsURL == nil {
         return errors.New("You are on the last page")
     }

@@ -6,6 +6,10 @@ import (
 )
 
 func commandMapF(cfg *config) error {
+    if cfg.nextLocationsURL == nil {
+        return errors.New("You are on the last page")
+    }
+
 	locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
 	if err != nil {
 		return err

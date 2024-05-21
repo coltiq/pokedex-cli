@@ -13,6 +13,7 @@ func main() {
 	cfg := &config{
 		pokeapiClient: pokeClient,
 		//pokeCache: pokeCache,
+        nextLocationsURL: pokeapi.BaseURL,
 	}
 
 	startRepl(cfg)

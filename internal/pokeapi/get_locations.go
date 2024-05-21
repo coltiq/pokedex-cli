@@ -7,7 +7,7 @@ import (
 )
 
 func (c *Client) GetLocations(pageURL *string) (RespLocations, error) {
-	url := baseURL + "/location-area"
+	url := BaseURL + "/location-area"
 	if pageURL != nil {
 		url = *pageURL
 	}

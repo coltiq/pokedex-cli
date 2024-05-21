@@ -6,7 +6,6 @@ import (
 )
 
 func commandMapF(cfg *config) error {
-    fmt.Printf("%v", *cfg.nextLocationsURL)
     if cfg.nextLocationsURL == nil {
         return errors.New("You are on the last page")
     }
@@ -15,13 +14,13 @@ func commandMapF(cfg *config) error {
 	if err != nil {
 		return err
 	}
-    fmt.Println(locationsResp)
 
 	cfg.nextLocationsURL = locationsResp.Next
 	cfg.prevLocationsURL = locationsResp.Previous
 
+    fmt.Println("Location Areas:")
 	for _, location := range locationsResp.Results {
-		fmt.Println(location.Name)
+		fmt.Printf(" - %v\n",location.Name)
 	}
 	return nil
 }
@@ -39,8 +38,9 @@ func commandMapB(cfg *config) error {
 	cfg.nextLocationsURL = locationsResp.Next
 	cfg.prevLocationsURL = locationsResp.Previous
 
+    fmt.Println("Location Areas:")
 	for _, location := range locationsResp.Results {
-		fmt.Println(location.Name)
+		fmt.Printf(" - %v\n",location.Name)
 	}
 	return nil
 }

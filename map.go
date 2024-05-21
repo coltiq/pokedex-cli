@@ -7,7 +7,7 @@ import (
 )
 
 
-func commandMap() error {
+func commandMapF(cfg *config) error {
     locations := api.CommandGetLocations(conf.Next)
     results := locations.Results
     for _, location := range results {
@@ -21,7 +21,7 @@ func commandMap() error {
 }
 
 
-func commandMapB() error {
+func commandMapB(cfg *config) error {
     if conf.Previous == "" {
         return errors.New("On first page")
     }

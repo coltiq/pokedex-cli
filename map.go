@@ -7,9 +7,14 @@ import (
 
 
 func commandMapF(cfg *config) error {
-    locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
-    if err != nil {
-        return err
+    
+    if entry, ok := cfg.pokeCache.storedVal[cfg.nextLocationsURL]; ok {
+        locationsResp := entry.val
+    } else {
+        locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
+        if err != nil {
+            return err
+        }
     }
     
     cfg.nextLocationsURL = locationsResp.Next

@@ -1,17 +1,25 @@
 package main
 
 import (
-    "bufio"
-    "fmt"
-    "os"
-    "strings"
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+
+	"github.com/coltiq/pokedex-cli/internal/pokeapi"
 )
 
-func startRepl() {
+type config struct {
+        pokeapiClient       pokeapi.Client
+        nextLocationsURL    *string
+        prevLocationsURL    *string
+}
+
+func startRepl(cfg *config) {
     for {
         promptCommand := getPromptCommand("Pokedex >")
         if command, ok := getCliCommands()[promptCommand]; ok{
-            err := command.callback()
+            err := command.callback(cfg)
             if err != nil {
                 fmt.Println(err)
             }
@@ -37,31 +45,16 @@ func getPromptCommand(prompt string) string {
     return command
 }
 
-
 func cleanInput(text string) string {
     command := strings.ToLower(text)
     return command
 }
 
-
 type cliCommand struct {
     name        string
     description string
-    callback    func() error
+    callback    func(*config) error
 }
-
-
-type Config struct {
-    Next     string
-    Previous string
-}
-
-
-var conf Config = Config{
-    Next: "https://pokeapi.co/api/v2/location/",
-    Previous: "",
-}
-
 
 func getCliCommands() map[string]cliCommand {
     return map[string]cliCommand{
@@ -78,7 +71,7 @@ func getCliCommands() map[string]cliCommand {
         "map": {
             name:        "map",
             description: "Display the names of the next 20 locations",
-            callback:    commandMap,
+            callback:    commandMapF,
         },
         "mapb": {
             name:        "mapb",

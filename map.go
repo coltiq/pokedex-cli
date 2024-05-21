@@ -7,32 +7,37 @@ import (
 
 
 func commandMapF(cfg *config) error {
-    locations := api.CommandGetLocations(conf.Next)
-    results := locations.Results
-    for _, location := range results {
-        fmt.Println(location.Name)
+    locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
+    if err != nil {
+        return err
     }
-    next := locations.Next
-    previous := locations.Previous
-    conf.Next = next
-    conf.Previous = previous
+    
+    cfg.nextLocationsURL = locationsResp.Next
+    cfg.prevLocationsURL = locationsResp.Previous
+
+    for _, location := range locationsResp.Results {
+            fmt.Println(location.Name)
+    }
     return nil
 }
 
 
 func commandMapB(cfg *config) error {
-    if conf.Previous == "" {
-        return errors.New("On first page")
+    if cfg.prevLocationsURL == nil {
+        return errors.New("You're on the first page")
     }
-    locations := api.CommandGetLocations(conf.Previous)
-    results := locations.Results
-    for _, location := range results {
-        fmt.Println(location.Name)
+
+    locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.prevLocationsURL)
+    if err != nil {
+        return err
     }
-    next := locations.Next
-    previous := locations.Previous
-    conf.Next = next
-    conf.Previous = previous
+
+    cfg.nextLocationsURL = locationsResp.Next
+    cfg.prevLocationsURL = locationsResp.Previous
+
+    for _, location := range locationsResp.Results {
+            fmt.Println(location.Name)
+    }
     return nil
 }
 

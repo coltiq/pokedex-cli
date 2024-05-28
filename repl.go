@@ -18,7 +18,7 @@ type config struct {
 func startRepl(cfg *config) {
 	for {
 		promptCommand := getPromptCommand("Pokedex >")
-		if command, ok := getCliCommands()[promptCommand]; ok {
+		if command, ok := getCliCommands()[promptCommand[0]]; ok {
 			err := command.callback(cfg)
 			if err != nil {
 				fmt.Println(err)
@@ -29,19 +29,19 @@ func startRepl(cfg *config) {
 	}
 }
 
-func getPromptCommand(prompt string) string {
-	var command string
+func getPromptCommand(prompt string) []string {
+	var commands []string
 	r := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print(prompt + " ")
 		r.Scan()
 
-		command = cleanInput(r.Text())[0]
-		if len(command) != 0 {
+		commands = cleanInput(r.Text())
+		if len(commands[0]) != 0 {
 			break
 		}
 	}
-	return command
+	return commands
 }
 
 func cleanInput(text string) []string {

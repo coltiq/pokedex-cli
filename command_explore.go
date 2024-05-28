@@ -7,12 +7,12 @@ import (
 
 func commandExplore(cfg *config, args ...string) error {
 	locationArea := &args[0]
-	pokemonResp, err := cfg.pokeapiClient.GetPokemon(locationArea)
+	encResp, err := cfg.pokeapiClient.GetLocationEncounters(locationArea)
 	if err != nil {
 		return errors.New("Location Does Not Exist")
 	}
 
-	pokemonEncounters := pokemonResp.PokemonEncounters
+	pokemonEncounters := encResp.PokemonEncounters
 
 	fmt.Printf("Exploring %s...\n", *locationArea)
 	fmt.Println("Found Pokemon:")

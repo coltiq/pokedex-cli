@@ -1,12 +1,15 @@
 package main
 
-import "fmt"
+import (
+    "errors"
+    "fmt"
+)
 
 func commandExplore(cfg *config, args ...string) error {
 	locationArea := &args[0]
 	pokemonResp, err := cfg.pokeapiClient.GetPokemon(locationArea)
 	if err != nil {
-		return err
+		return errors.New("Location Does Not Exist")
 	}
 
 	pokemonEncounters := pokemonResp.PokemonEncounters

@@ -3,11 +3,10 @@ package pokecache
 import "time"
 
 func (c *Cache) Add(pageURL string, val []byte) {
-	entry := cacheEntry{
+    c.mu.Lock()
+    defer c.mu.Unlock()
+	c.cache[pageURL] = cacheEntry{
 		createdAt: time.Now(),
 		val:       val,
 	}
-	c.mu.Lock()
-	c.cache[pageURL] = entry
-	c.mu.Unlock()
 }

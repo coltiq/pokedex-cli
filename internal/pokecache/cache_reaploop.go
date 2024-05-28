@@ -3,33 +3,19 @@ package pokecache
 import "time"
 
 func (c *Cache) reapLoop(interval time.Duration) {
-	for {
-		checkTime := time.Now()
-		ticker := time.NewTicker(interval)
-		del := make(chan bool)
-
-		go func() {
-			for {
-				select {
-				case <-del:
-					c.DeleteEntries(checkTime, interval)
-					return
-				case <-ticker.C:
-					continue
-				}
-			}
-		}()
-
-		time.Sleep(interval)
-		ticker.Stop()
-		del <- true
-	}
+    ticker := time.NewTicker(interval)
+    for range ticker.C {
+        c.reap(time.Now(), interval)
+    }
 }
 
-func (c *Cache) DeleteEntries(checkTime time.Time, interval time.Duration) {
-	for pageURL, entry := range c.cache {
-		if entry.createdAt.Sub(checkTime) >= interval {
-			delete(c.cache, pageURL)
-		}
-	}
+func (c *Cache) reap(now time.Time, last time.Duration) {
+    c.mu.Lock()
+    defer c.mu.Unlock()
+
+    for k, v := range c.cache {
+        if v.createdAt.Before(now.Add(-last)) {
+            delete(c.cache, k)
+        }
+    }
 }

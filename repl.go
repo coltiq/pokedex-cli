@@ -22,7 +22,7 @@ func startRepl(cfg *config) {
 			if !checkUsage(command, promptCommands[1:]) {
 				continue
 			}
-            err := command.callback(cfg, promptCommands[1:])
+			err := command.callback(cfg, promptCommands[1:])
 			if err != nil {
 				fmt.Println(err)
 			}

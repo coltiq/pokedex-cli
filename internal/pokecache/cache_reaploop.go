@@ -27,9 +27,9 @@ func (c *Cache) reapLoop(interval time.Duration) {
 }
 
 func (c *Cache) DeleteEntries(checkTime time.Time, interval time.Duration) {
-	for pageURL, entry := range c.storedVal {
+	for pageURL, entry := range c.cache {
 		if entry.createdAt.Sub(checkTime) >= interval {
-			delete(c.storedVal, pageURL)
+			delete(c.cache, pageURL)
 		}
 	}
 }

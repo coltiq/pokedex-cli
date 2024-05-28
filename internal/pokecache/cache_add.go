@@ -8,6 +8,6 @@ func (c *Cache) Add(pageURL string, val []byte) {
 		val:       val,
 	}
 	c.mu.Lock()
-	c.storedVal[pageURL] = entry
+	c.cache[pageURL] = entry
 	c.mu.Unlock()
 }

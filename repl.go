@@ -22,7 +22,7 @@ func startRepl(cfg *config) {
 			if !checkUsage(command, promptCommands[1:]) {
 				continue
 			}
-			err := command.callback(cfg)
+            err := command.callback(cfg, promptCommands[1:])
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -66,7 +66,7 @@ type cliCommand struct {
 	description   string
 	extraCommands int
 	usage         string
-	callback      func(*config) error
+	callback      func(*config, []string) error
 }
 
 func getCliCommands() map[string]cliCommand {

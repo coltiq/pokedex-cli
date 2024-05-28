@@ -3,11 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
-
 )
 
 func commandMapF(cfg *config) error {
-    locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
+	locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
 	if err != nil {
 		return err
 	}
@@ -15,9 +14,9 @@ func commandMapF(cfg *config) error {
 	cfg.nextLocationsURL = locationsResp.Next
 	cfg.prevLocationsURL = locationsResp.Previous
 
-    fmt.Println("Location Areas:")
+	fmt.Println("Location Areas:")
 	for _, location := range locationsResp.Results {
-		fmt.Printf(" - %v\n",location.Name)
+		fmt.Printf(" - %v\n", location.Name)
 	}
 	return nil
 }
@@ -35,9 +34,9 @@ func commandMapB(cfg *config) error {
 	cfg.nextLocationsURL = locationsResp.Next
 	cfg.prevLocationsURL = locationsResp.Previous
 
-    fmt.Println("Location Areas:")
+	fmt.Println("Location Areas:")
 	for _, location := range locationsResp.Results {
-		fmt.Printf(" - %v\n",location.Name)
+		fmt.Printf(" - %v\n", location.Name)
 	}
 	return nil
 }

@@ -7,12 +7,10 @@ import (
 	"strings"
 
 	"github.com/coltiq/pokedex-cli/internal/pokeapi"
-	"github.com/coltiq/pokedex-cli/internal/pokecache"
 )
 
 type config struct {
 	pokeapiClient    pokeapi.Client
-	pokeCache        pokecache.Cache
 	nextLocationsURL *string
 	prevLocationsURL *string
 }
@@ -78,6 +76,11 @@ func getCliCommands() map[string]cliCommand {
 			name:        "mapb",
 			description: "Display the names of the previous 20 locations",
 			callback:    commandMapB,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Display the name of pokemon in given area",
+			callback:    commandExplore,
 		},
 	}
 }

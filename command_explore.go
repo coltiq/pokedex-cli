@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-func commandExplore(cfg *config, extraCommands []string) error {
-	locationArea := &extraCommands[0]
+func commandExplore(cfg *config, args ...string) error {
+	locationArea := &args[0]
 	pokemonResp, err := cfg.pokeapiClient.GetPokemon(locationArea)
 	if err != nil {
 		return err

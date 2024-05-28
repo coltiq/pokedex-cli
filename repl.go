@@ -18,11 +18,18 @@ type config struct {
 func startRepl(cfg *config) {
 	for {
 		promptCommands := getPromptCommands("Pokedex >")
-		if command, ok := getCliCommands()[promptCommands[0]]; ok {
-			if !checkUsage(command, promptCommands[1:]) {
+
+        commandName := promptCommands[0]
+        args := []string{}
+        if len(promptCommands) > 1 {
+            args = promptCommands[1:]
+        }
+
+		if command, ok := getCliCommands()[commandName]; ok {
+			if !checkUsage(command, args) {
 				continue
 			}
-			err := command.callback(cfg, promptCommands[1:])
+			err := command.callback(cfg, args...)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -66,7 +73,7 @@ type cliCommand struct {
 	description   string
 	extraCommands int
 	usage         string
-	callback      func(*config, []string) error
+	callback      func(*config, ...string) error
 }
 
 func getCliCommands() map[string]cliCommand {

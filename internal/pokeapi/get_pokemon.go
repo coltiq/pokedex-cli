@@ -7,7 +7,7 @@ import (
 )
 
 func (c *Client) GetPokemon(pageURL *string) (RespPokemon, error) {
-    url := baseURL + "/location-area/" + *pageURL
+	url := baseURL + "/location-area/" + *pageURL
 
 	if val, ok := c.cache.Get(url); ok {
 		pokemonResp := RespPokemon{}

@@ -17,8 +17,11 @@ type config struct {
 
 func startRepl(cfg *config) {
 	for {
-		promptCommand := getPromptCommand("Pokedex >")
-		if command, ok := getCliCommands()[promptCommand[0]]; ok {
+		promptCommands := getPromptCommands("Pokedex >")
+		if command, ok := getCliCommands()[promptCommands[0]]; ok {
+			if !checkUsage(command, promptCommands[1:]) {
+				continue
+			}
 			err := command.callback(cfg)
 			if err != nil {
 				fmt.Println(err)
@@ -29,7 +32,7 @@ func startRepl(cfg *config) {
 	}
 }
 
-func getPromptCommand(prompt string) []string {
+func getPromptCommands(prompt string) []string {
 	var commands []string
 	r := bufio.NewScanner(os.Stdin)
 	for {
@@ -49,38 +52,59 @@ func cleanInput(text string) []string {
 	return words
 }
 
+func checkUsage(command cliCommand, extraCommands []string) bool {
+	if len(extraCommands) != command.extraCommands {
+		fmt.Println("Incorrect Usage:")
+		fmt.Printf(" > %s\n", command.usage)
+		return false
+	}
+	return true
+}
+
 type cliCommand struct {
-	name        string
-	description string
-	callback    func(*config) error
+	name          string
+	description   string
+	extraCommands int
+	usage         string
+	callback      func(*config) error
 }
 
 func getCliCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"help": {
-			name:        "help",
-			description: "Displays a help message",
-			callback:    commandHelp,
+			name:          "help",
+			description:   "Displays a help message",
+			extraCommands: 0,
+			usage:         "help [no extra commands]",
+			callback:      commandHelp,
 		},
 		"exit": {
-			name:        "exit",
-			description: "Exit the Pokedex",
-			callback:    commandExit,
+			name:          "exit",
+			description:   "Exit the Pokedex",
+			extraCommands: 0,
+			usage:         "exit [no extra commands]",
+			callback:      commandExit,
 		},
 		"map": {
-			name:        "map",
-			description: "Display the names of the next 20 locations",
-			callback:    commandMapF,
+			name:          "map",
+			description:   "Display the names of the next 20 locations",
+			extraCommands: 0,
+			usage:         "map [no extra commands]",
+			callback:      commandMapF,
 		},
 		"mapb": {
-			name:        "mapb",
-			description: "Display the names of the previous 20 locations",
-			callback:    commandMapB,
+			name:          "mapb",
+			description:   "Display the names of the previous 20 locations",
+			extraCommands: 0,
+			usage:         "mapb [no extra commands]",
+			callback:      commandMapB,
 		},
 		"explore": {
-			name:        "explore",
-			description: "Display the name of pokemon in given area",
-			callback:    commandExplore,
+			name:          "explore",
+			description:   "Display the name of pokemon in given area",
+			extraCommands: 1,
+			usage:         "explore [location-area]",
+			callback:      commandExplore,
 		},
 	}
 }

@@ -3,10 +3,11 @@ package main
 import (
 	"errors"
 	"fmt"
+
 )
 
 func commandMapF(cfg *config) error {
-	locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
+    locationsResp, err := cfg.pokeapiClient.GetLocations(cfg.nextLocationsURL)
 	if err != nil {
 		return err
 	}

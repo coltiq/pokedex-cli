@@ -2,3 +2,5 @@ github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528132144-27dfece83
 github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528132144-27dfece8395c/go.mod h1:jQVGonA9bnb3GoiI0L8Bv/pkmQ6ivj1sY3WzAnsuJEs=
 github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528134807-e9c6e41cc7fa h1:aWHxGA1REcDxCZIlSuRnzRp9rcF4xeWmGrFI4F1xwCA=
 github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528134807-e9c6e41cc7fa/go.mod h1:jQVGonA9bnb3GoiI0L8Bv/pkmQ6ivj1sY3WzAnsuJEs=
+github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528135753-688ab37975dd h1:E6CEXSTpJgSFbwJuXtGnJ0JRRm1Q8oy0ZFoNPoj/NwY=
+github.com/coltiq/pokedex-cli/internal/pokecache v0.0.0-20240528135753-688ab37975dd/go.mod h1:jQVGonA9bnb3GoiI0L8Bv/pkmQ6ivj1sY3WzAnsuJEs=
